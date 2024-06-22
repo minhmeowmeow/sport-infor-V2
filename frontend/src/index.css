@@ -1,0 +1,198 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Body */
+body {
+  background: linear-gradient(120deg, #2b5876, #4e4376);
+  color: #fff;
+  line-height: 1.6;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* Header */
+header {
+  background: #2b5876;
+  padding: 1rem 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+nav ul li {
+  margin: 0 1rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2rem;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+nav ul li a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: width 0.3s;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+  transition: width 0.3s;
+}
+
+/* Main */
+main {
+  padding: 2rem 0;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #fff;
+}
+
+/* Sports List */
+.sports-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.sport-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, background 0.3s;
+}
+
+.sport-item:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.sport-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+/* Footer */
+footer {
+  background: #2b5876;
+  padding: 1rem 0;
+  text-align: center;
+  margin-top: 2rem;
+  color: #fff;
+}
+
+/* Button */
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  margin-top: 1rem;
+  color: #fff;
+  background-color: #4e4376;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.button:hover {
+  background-color: #2b5876;
+  transform: translateY(-3px);
+}
+
+/* Forms */
+form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+form input,
+form textarea,
+form select {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 5px;
+}
+
+form input[type="submit"] {
+  background: #4e4376;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+form input[type="submit"]:hover {
+  background: #2b5876;
+  transform: translateY(-3px);
+}
+
+/* Guestbook */
+.guestbook-entry {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.guestbook-entry h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.guestbook-entry p {
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+  }
+
+  .sport-item {
+    margin-bottom: 1rem;
+  }
+}

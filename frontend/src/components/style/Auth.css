@@ -1,0 +1,264 @@
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('https://i0.wp.com/draytonsportsclub.com/wp-content/uploads/2019/12/spot-runs-start-la.jpg?fit=1600%2C1068&ssl=1') no-repeat center center fixed; 
+    position: relative;
+  }
+  
+  .auth-tabs {
+    max-width: 400px;
+    width: 100%;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-in-out;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .auth-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .form-outline {
+    margin-bottom: 1rem;
+  }
+  
+  .form-outline input,
+  .form-outline label {
+    width: 100%;
+  }
+  
+  .form-control {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.6);
+    color: #333;
+    transition: background-color 0.3s, transform 0.3s, border 0.3s;
+  }
+  
+  .form-control:focus {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #666;
+  }
+  
+  .form-label {
+    color: #333;
+  }
+  
+  .form-check-input {
+    margin-right: 0.5rem;
+  }
+  
+  .form-check-label {
+    color: #333;
+  }
+  
+  .btn-link {
+    color: #333;
+    transition: color 0.3s, transform 0.3s;
+  }
+  
+  .btn-link:hover {
+    color: #2b5876;
+    transform: translateY(-2px);
+  }
+  
+  .text-center a {
+    color: #2b5876;
+    font-weight: bold;
+    transition: color 0.3s, transform 0.3s;
+  }
+  
+  .text-center a:hover {
+    text-decoration: underline;
+    color: #4e4376;
+    transform: translateY(-2px);
+  }
+  
+  /* CSS thêm mới cho các nút */
+  .btn-primary {
+    background: linear-gradient(45deg, #4e4376, #2b5876);
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background: linear-gradient(45deg, #2b5876, #4e4376);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* CSS thêm cho form Add a new entry */
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .form-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .form-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .form-group label {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    margin-right: 10px;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+  }
+  
+  .form-group .form-check-input {
+    margin-top: 10px;
+    margin-right: 5px;
+  }
+  
+  .form-group .form-check-label {
+    margin-top: 10px;
+    font-weight: normal;
+  }
+  
+  .form-group .btn {
+    background: linear-gradient(45deg, #4e4376, #2b5876);
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  
+  .form-group .btn:hover {
+    background: linear-gradient(45deg, #2b5876, #4e4376);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .form-group .form-control {
+    width: calc(100% - 10px);
+  }
+  
+  /* CSS thêm cho form Add a new sport */
+  .form-sport-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .form-sport-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .form-sport-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .form-sport-group label {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .form-sport-group input,
+  .form-sport-group textarea,
+  .form-sport-group select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    margin-right: 10px;
+  }
+  
+  .form-sport-group textarea {
+    resize: vertical;
+  }
+  
+  .form-sport-group .form-check-input {
+    margin-top: 10px;
+    margin-right: 5px;
+  }
+  
+  .form-sport-group .form-check-label {
+    margin-top: 10px;
+    font-weight: normal;
+  }
+  
+  .form-sport-group .btn {
+    background: linear-gradient(45deg, #4e4376, #2b5876);
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  
+  .form-sport-group .btn:hover {
+    background: linear-gradient(45deg, #2b5876, #4e4376);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .form-sport-group .form-control {
+    width: calc(100% - 10px);
+  }
+  

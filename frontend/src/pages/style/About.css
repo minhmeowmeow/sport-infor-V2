@@ -1,0 +1,14 @@
+.container {
+    width: 90%;
+    margin: 0 auto;
+    background: url('https://get.pxhere.com/photo/hand-person-light-black-and-white-people-white-sport-photography-dark-male-shadow-training-darkness-box-black-monochrome-arm-muscle-boxer-fight-boxing-men-singing-guitarist-entertainment-kickboxing-sense-in-black-monochrome-photography-film-noir-computer-wallpaper-580288.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #fff;
+  }
+  
