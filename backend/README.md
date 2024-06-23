@@ -30,6 +30,11 @@
 
 ```bash
 $ npm install
+$ npm install @nestjs/platform-express @nestjs/cors
+$ npm install @nestjs/typeorm typeorm
+$ npm install @nestjs/platform-express @nestjs/cors
+
+
 ```
 
 ## Running the app
@@ -71,3 +76,9 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+
+
+
+
+added Typeorm for the database connection and pg(postgres)

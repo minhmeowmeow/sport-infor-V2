@@ -9,7 +9,8 @@ import Guestbook from './pages/Guestbook';
 import Sport from './pages/Sport';
 import SportsList from './components/SportsList';
 import SportDetail from './components/SportDetail';
-import Auth from './components/Auth';
+import Login from './components/Login';
+import UserList from './components/temporary';
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
         <Route path="/guestbook" element={<Guestbook />} />
         <Route path="/sports" element={<SportsList />} />
         <Route path="/sports/:id" element={<SportDetail />} />
-        <Route path="/auth" element={<Auth />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/temporary" element={<UserList />} />
       </Routes>
       <Footer />
     </Router>

@@ -11,6 +11,7 @@ import SportsList from './components/SportsList';
 import SportDetail from './components/SportDetail';
 import Login from './components/Login';
 import Register from './components/Register';
+import UserList from './components/UserList';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/sports/:id" element={<SportDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/temporary" element={<UserList />} />
       </Routes>
       <Footer />
     </Router>

@@ -1,0 +1,494 @@
+-- ph... SQLINES DEMO ***
+-- ve... SQLINES DEMO ***
+-- SQLINES DEMO *** admin.net/
+--
+-- Ho... SQLINES DEMO ***
+-- SQLINES DEMO *** Jun 23, 2024 at 04:13 AM
+-- SQLINES DEMO *** 0.4.28-MariaDB
+-- PH... SQLINES DEMO ***
+
+/* SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO"; */
+START TRANSACTION;
+time_zone := "+00:00";
+
+
+/* SQLINES DEMO *** ARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/* SQLINES DEMO *** ARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/* SQLINES DEMO *** LLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/* SQLINES DEMO *** tf8mb4 */;
+
+CREATE DATABASE sportsinfo;
+SET SCHEMA 'DATABASE' sportsinfo;
+--
+-- SQLINES DEMO *** info`
+--
+
+-- SQLINES DEMO *** ---------------------------------------
+
+--
+-- SQLINES DEMO *** or table `country`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE country (
+  id int NOT NULL,
+  name varchar(50) NOT NULL
+) ;
+
+--
+-- SQLINES DEMO *** table `country`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+INSERT INTO country (id, name) VALUES
+(2, 'countryTest');
+
+-- SQLINES DEMO *** ---------------------------------------
+
+--
+-- SQLINES DEMO *** or table `guestbook`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE guestbook (
+  id int NOT NULL,
+  name varchar(50) DEFAULT NULL,
+  recommend_id int DEFAULT NULL,
+  date_join timestamp(0) DEFAULT NULL,
+  email varchar(50) DEFAULT NULL,
+  recommend_friend smallint DEFAULT NULL,
+  message varchar(500) DEFAULT NULL
+) ;
+
+-- SQLINES DEMO *** ---------------------------------------
+
+--
+-- SQLINES DEMO *** or table `news`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE news (
+  id int NOT NULL,
+  title varchar(50) DEFAULT NULL,
+  description varchar(500) DEFAULT NULL,
+  created_date timestamp(0) DEFAULT NULL,
+  updated_date timestamp(0) DEFAULT NULL,
+  user_id int DEFAULT NULL
+) ;
+
+-- SQLINES DEMO *** ---------------------------------------
+
+--
+-- SQLINES DEMO *** or table `organization`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE organization (
+  id int NOT NULL,
+  name varchar(50) NOT NULL
+) ;
+
+--
+-- SQLINES DEMO *** table `organization`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+INSERT INTO organization (id, name) VALUES
+(1, 'orgTest');
+
+-- SQLINES DEMO *** ---------------------------------------
+
+--
+-- SQLINES DEMO *** or table `player`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE player (
+  id int NOT NULL,
+  team_id int DEFAULT NULL,
+  sport_id int DEFAULT NULL,
+  name varchar(50) DEFAULT NULL,
+  age int DEFAULT NULL,
+  description varchar(500) DEFAULT NULL,
+  role varchar(50) DEFAULT NULL
+) ;
+
+--
+-- SQLINES DEMO *** table `player`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+INSERT INTO player (id, team_id, sport_id, name, age, description, role) VALUES
+(1, 1, 6, 'playerTest', 20, 'aaaaa', 'backline');
+
+-- SQLINES DEMO *** ---------------------------------------
+
+--
+-- SQLINES DEMO *** or table `recommend_score`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE recommend_score (
+  id int NOT NULL,
+  score int DEFAULT NULL,
+  description varchar(50) DEFAULT NULL
+) ;
+
+-- SQLINES DEMO *** ---------------------------------------
+
+--
+-- SQLINES DEMO *** or table `record`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE record (
+  id int NOT NULL,
+  player_id int DEFAULT NULL,
+  tournament_id int DEFAULT NULL,
+  record_type varchar(50) DEFAULT NULL,
+  record_value int DEFAULT NULL,
+  date_recorded timestamp(0) DEFAULT NULL
+) ;
+
+-- SQLINES DEMO *** ---------------------------------------
+
+--
+-- SQLINES DEMO *** or table `role`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE role (
+  id int NOT NULL,
+  name varchar(50) DEFAULT NULL
+) ;
+
+-- SQLINES DEMO *** ---------------------------------------
+
+--
+-- SQLINES DEMO *** or table `sports`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE sports (
+  id int NOT NULL,
+  name varchar(30) NOT NULL,
+  strategy varchar(500) NOT NULL,
+  is_team varchar(50) NOT NULL,
+  rule varchar(500) NOT NULL,
+  time_invented date NOT NULL
+) ;
+
+--
+-- SQLINES DEMO *** table `sports`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+INSERT INTO sports (id, name, strategy, is_team, rule, time_invented) VALUES
+(6, 'sportTest', 'a', 'a', 'a', '1000-06-02');
+
+-- SQLINES DEMO *** ---------------------------------------
+
+--
+-- SQLINES DEMO *** or table `sport_country`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE sport_country (
+  country_id int NOT NULL,
+  sport_id int NOT NULL,
+  year_join int NOT NULL,
+  total_score int NOT NULL,
+  international_trophy int NOT NULL
+) ;
+
+-- SQLINES DEMO *** ---------------------------------------
+
+--
+-- SQLINES DEMO *** or table `team`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE team (
+  id int NOT NULL,
+  sport_id int NOT NULL,
+  organization_id int NOT NULL,
+  name varchar(50) NOT NULL,
+  year_form int NOT NULL,
+  still_active smallint NOT NULL
+) ;
+
+--
+-- SQLINES DEMO *** table `team`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+INSERT INTO team (id, sport_id, organization_id, name, year_form, still_active) VALUES
+(1, 6, 1, 'teamTest', 1111, 1);
+
+-- SQLINES DEMO *** ---------------------------------------
+
+--
+-- SQLINES DEMO *** or table `tournament`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE tournament (
+  id int NOT NULL,
+  sport_id int DEFAULT NULL,
+  name varchar(50) DEFAULT NULL,
+  start_date timestamp(0) DEFAULT NULL,
+  end_date timestamp(0) DEFAULT NULL
+) ;
+
+--
+-- SQLINES DEMO *** table `tournament`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+INSERT INTO tournament (id, sport_id, name, start_date, end_date) VALUES
+(1, 6, 'tournamentTest', '2024-06-04 10:02:24', '2024-06-13 10:02:24');
+
+-- SQLINES DEMO *** ---------------------------------------
+
+--
+-- SQLINES DEMO *** or table `users`
+--
+
+-- SQLINES LICENSE FOR EVALUATION USE ONLY
+CREATE TABLE users (
+  id int NOT NULL,
+  role_id int DEFAULT NULL,
+  username varchar(50) DEFAULT NULL,
+  password varchar(50) DEFAULT NULL,
+  email varchar(50) DEFAULT NULL
+) ;
+
+--
+-- SQLINES DEMO *** d tables
+--
+
+--
+-- SQLINES DEMO ***  `country`
+--
+ALTER TABLE country
+  ADD PRIMARY KEY (id);
+
+--
+-- SQLINES DEMO ***  `guestbook`
+--
+ALTER TABLE guestbook
+  ADD PRIMARY KEY (id),
+  ADD KEY recommend_id (recommend_id);
+
+--
+-- SQLINES DEMO ***  `news`
+--
+ALTER TABLE news
+  ADD PRIMARY KEY (id),
+  ADD KEY user_id (user_id);
+
+--
+-- SQLINES DEMO ***  `organization`
+--
+ALTER TABLE organization
+  ADD PRIMARY KEY (id);
+
+--
+-- SQLINES DEMO ***  `player`
+--
+ALTER TABLE player
+  ADD PRIMARY KEY (id),
+  ADD KEY team_id (team_id),
+  ADD KEY sport_id (sport_id);
+
+--
+-- SQLINES DEMO ***  `recommend_score`
+--
+ALTER TABLE recommend_score
+  ADD PRIMARY KEY (id);
+
+--
+-- SQLINES DEMO ***  `record`
+--
+ALTER TABLE record
+  ADD PRIMARY KEY (id),
+  ADD KEY player_id (player_id),
+  ADD KEY tournament_id (tournament_id);
+
+--
+-- SQLINES DEMO ***  `role`
+--
+ALTER TABLE role
+  ADD PRIMARY KEY (id);
+
+--
+-- SQLINES DEMO ***  `sports`
+--
+ALTER TABLE sports
+  ADD PRIMARY KEY (id);
+
+--
+-- SQLINES DEMO ***  `sport_country`
+--
+ALTER TABLE sport_country
+  ADD PRIMARY KEY (country_id,sport_id),
+  ADD KEY fk_sport_country (sport_id,country_id) USING BTREE;
+
+--
+-- SQLINES DEMO ***  `team`
+--
+ALTER TABLE team
+  ADD PRIMARY KEY (id),
+  ADD KEY fk_org (organization_id),
+  ADD KEY fk_sport_org (sport_id) USING BTREE;
+
+--
+-- SQLINES DEMO ***  `tournament`
+--
+ALTER TABLE tournament
+  ADD PRIMARY KEY (id),
+  ADD KEY sport_id (sport_id);
+
+--
+-- SQLINES DEMO ***  `users`
+--
+ALTER TABLE users
+  ADD PRIMARY KEY (id),
+  ADD KEY role_id (role_id);
+
+--
+-- SQLINES DEMO *** r dumped tables
+--
+
+--
+-- SQLINES DEMO *** r table `country`
+--
+ALTER TABLE country
+  MODIFY id cast(11 as int) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- SQLINES DEMO *** r table `guestbook`
+--
+ALTER TABLE guestbook
+  MODIFY id cast(11 as int) NOT NULL AUTO_INCREMENT;
+
+--
+-- SQLINES DEMO *** r table `news`
+--
+ALTER TABLE news
+  MODIFY id cast(11 as int) NOT NULL AUTO_INCREMENT;
+
+--
+-- SQLINES DEMO *** r table `organization`
+--
+ALTER TABLE organization
+  MODIFY id cast(11 as int) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- SQLINES DEMO *** r table `player`
+--
+ALTER TABLE player
+  MODIFY id cast(11 as int) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- SQLINES DEMO *** r table `recommend_score`
+--
+ALTER TABLE recommend_score
+  MODIFY id cast(11 as int) NOT NULL AUTO_INCREMENT;
+
+--
+-- SQLINES DEMO *** r table `record`
+--
+ALTER TABLE record
+  MODIFY id cast(11 as int) NOT NULL AUTO_INCREMENT;
+
+--
+-- SQLINES DEMO *** r table `role`
+--
+ALTER TABLE role
+  MODIFY id cast(11 as int) NOT NULL AUTO_INCREMENT;
+
+--
+-- SQLINES DEMO *** r table `sports`
+--
+ALTER TABLE sports
+  MODIFY id cast(11 as int) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- SQLINES DEMO *** r table `team`
+--
+ALTER TABLE team
+  MODIFY id cast(11 as int) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- SQLINES DEMO *** r table `tournament`
+--
+ALTER TABLE tournament
+  MODIFY id cast(11 as int) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- SQLINES DEMO *** r table `users`
+--
+ALTER TABLE users
+  MODIFY id cast(11 as int) NOT NULL AUTO_INCREMENT;
+
+--
+-- SQLINES DEMO *** umped tables
+--
+
+--
+-- SQLINES DEMO *** able `guestbook`
+--
+ALTER TABLE guestbook
+  ADD CONSTRAINT guestbook_ibfk_1 FOREIGN KEY (recommend_id) REFERENCES recommend_score (id);
+
+--
+-- SQLINES DEMO *** able `news`
+--
+ALTER TABLE news
+  ADD CONSTRAINT news_ibfk_1 FOREIGN KEY (user_id) REFERENCES users (id);
+
+--
+-- SQLINES DEMO *** able `player`
+--
+ALTER TABLE player
+  ADD CONSTRAINT player_ibfk_1 FOREIGN KEY (team_id) REFERENCES team (id),
+  ADD CONSTRAINT player_ibfk_2 FOREIGN KEY (sport_id) REFERENCES sports (id);
+
+--
+-- SQLINES DEMO *** able `record`
+--
+ALTER TABLE record
+  ADD CONSTRAINT record_ibfk_1 FOREIGN KEY (player_id) REFERENCES player (id),
+  ADD CONSTRAINT record_ibfk_2 FOREIGN KEY (tournament_id) REFERENCES tournament (id);
+
+--
+-- SQLINES DEMO *** able `sport_country`
+--
+ALTER TABLE sport_country
+  ADD CONSTRAINT fk_country FOREIGN KEY (country_id) REFERENCES country (id),
+  ADD CONSTRAINT fk_sport FOREIGN KEY (sport_id) REFERENCES sports (id);
+
+--
+-- SQLINES DEMO *** able `team`
+--
+ALTER TABLE team
+  ADD CONSTRAINT fk_org FOREIGN KEY (organization_id) REFERENCES organization (id),
+  ADD CONSTRAINT fk_sport_org FOREIGN KEY (sport_id) REFERENCES sports (id);
+
+--
+-- SQLINES DEMO *** able `tournament`
+--
+ALTER TABLE tournament
+  ADD CONSTRAINT tournament_ibfk_1 FOREIGN KEY (sport_id) REFERENCES sports (id);
+
+--
+-- SQLINES DEMO *** able `users`
+--
+ALTER TABLE users
+  ADD CONSTRAINT users_ibfk_1 FOREIGN KEY (role_id) REFERENCES role (id);
+COMMIT;
+
+/* SQLINES DEMO *** ER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/* SQLINES DEMO *** ER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/* SQLINES DEMO *** ON_CONNECTION=@OLD_COLLATION_CONNECTION */;
