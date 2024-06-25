@@ -15,28 +15,7 @@ CREATE TABLE country (
 
 -- Insert data into `country`
 INSERT INTO country (id, name) VALUES
-(2, 'countryTest');
-
--- Create table `guestbook`
-CREATE TABLE guestbook (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(50),
-  recommend_id INT,
-  date_join TIMESTAMP WITH TIME ZONE,
-  email VARCHAR(50),
-  recommend_friend SMALLINT,
-  message VARCHAR(500)
-);
-
--- Create table `news`
-CREATE TABLE news (
-  id SERIAL PRIMARY KEY,
-  title VARCHAR(50),
-  description VARCHAR(500),
-  created_date TIMESTAMP WITH TIME ZONE,
-  updated_date TIMESTAMP WITH TIME ZONE,
-  user_id INT
-);
+(1, 'countryTest');
 
 -- Create table `organization`
 CREATE TABLE organization (
@@ -48,21 +27,6 @@ CREATE TABLE organization (
 INSERT INTO organization (id, name) VALUES
 (1, 'orgTest');
 
--- Create table `player`
-CREATE TABLE player (
-  id SERIAL PRIMARY KEY,
-  team_id INT,
-  sport_id INT,
-  name VARCHAR(50),
-  age INT,
-  description VARCHAR(500),
-  role VARCHAR(50)
-);
-
--- Insert data into `player`
-INSERT INTO player (id, team_id, sport_id, name, age, description, role) VALUES
-(1, 1, 1, 'playerTest', 20, 'aaaaa', 'backline');
-
 -- Create table `recommend_score`
 CREATE TABLE recommend_score (
   id SERIAL PRIMARY KEY,
@@ -70,14 +34,16 @@ CREATE TABLE recommend_score (
   description VARCHAR(50)
 );
 
--- Create table `record`
-CREATE TABLE record (
+-- Create table `guestbook`
+CREATE TABLE guestbook (
   id SERIAL PRIMARY KEY,
-  player_id INT,
-  tournament_id INT,
-  record_type VARCHAR(50),
-  record_value INT,
-  date_recorded TIMESTAMP WITH TIME ZONE
+  name VARCHAR(50),
+  recommend_id INT,
+  date_join TIMESTAMP WITH TIME ZONE,
+  email VARCHAR(50),
+  recommend_friend SMALLINT,
+  message VARCHAR(500),
+  FOREIGN KEY (recommend_id) REFERENCES recommend_score (id)
 );
 
 -- Create table `role`
@@ -119,14 +85,32 @@ CREATE TABLE team (
   organization_id INT NOT NULL,
   name VARCHAR(50) NOT NULL,
   year_form INT NOT NULL,
-  still_active SMALLINT NOT NULL,
+  still_active BOOLEAN NOT NULL,
   FOREIGN KEY (sport_id) REFERENCES sports (id),
   FOREIGN KEY (organization_id) REFERENCES organization (id)
 );
 
 -- Insert data into `team`
 INSERT INTO team (id, sport_id, organization_id, name, year_form, still_active) VALUES
-(1, 1, 1, 'teamTest', 1111, 1);
+(1, 1, 1, 'teamTest', 1111, 'true');
+
+-- Create table `player`
+CREATE TABLE player (
+  id SERIAL PRIMARY KEY,
+  team_id INT,
+  sport_id INT,
+  name VARCHAR(50),
+  age INT,
+  description VARCHAR(500),
+  role VARCHAR(50),
+  FOREIGN KEY (sport_id) REFERENCES sports (id),
+  FOREIGN KEY (team_id) REFERENCES team (id)
+);
+
+-- Insert data into `player`
+INSERT INTO player (id, team_id, sport_id, name, age, description, role) VALUES
+(1, 1, 1, 'playerTest', 20, 'aaaaa', 'backline');
+
 
 -- Create table `tournament`
 CREATE TABLE tournament (
@@ -142,6 +126,18 @@ CREATE TABLE tournament (
 INSERT INTO tournament (id, sport_id, name, start_date, end_date) VALUES
 (1, 1, 'tournamentTest', '2024-06-04 10:02:24', '2024-06-13 10:02:24');
 
+-- Create table `record`
+CREATE TABLE record (
+  id SERIAL PRIMARY KEY,
+  player_id INT,
+  tournament_id INT,
+  record_type VARCHAR(50),
+  record_value INT,
+  date_recorded TIMESTAMP WITH TIME ZONE,
+  FOREIGN KEY (player_id) REFERENCES player (id),
+  FOREIGN KEY (tournament_id) REFERENCES tournament (id)
+);
+
 -- Create table `users`
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
@@ -150,4 +146,17 @@ CREATE TABLE users (
   password VARCHAR(100),
   email VARCHAR (100) UNIQUE,
   FOREIGN KEY (role_id) REFERENCES role (id)
+);
+
+-- Create table `news`
+CREATE TABLE news (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(50),
+  description VARCHAR(500),
+  created_date TIMESTAMP WITH TIME ZONE,
+  updated_date TIMESTAMP WITH TIME ZONE,
+  user_id INT NOT NULL,
+  sport_id INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user (id),
+  FOREIGN KEY (sport_id) REFERENCES sport (id)
 );

@@ -1,5 +1,6 @@
+import { News } from 'src/news/news.entity';
 import { Role } from 'src/role/role.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 
 @Entity({name: 'users'})
 export class User {
@@ -22,4 +23,7 @@ export class User {
     foreignKeyConstraintName: 'users_role_id_fkey',
     }) 
   role: Role;
+  
+  @OneToMany(() => News, news => news.user_id)
+  news: News[];
 }

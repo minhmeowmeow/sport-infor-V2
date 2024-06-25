@@ -46,6 +46,10 @@ export class UserService {
         // const newUser = this.userRepository.create(userData);
         // return this.userRepository.save(newUser);
         
+      const existUser = await this.login(userData);
+      if(existUser){
+        throw new Error('User already exists'); 
+      }
       const result = await this.userRepository
       .createQueryBuilder()
       .insert()
@@ -73,10 +77,6 @@ export class UserService {
       //     password: userData.password,
       //     email: userData.email
       // });
-      const existUser = await this.login(userData);
-      if(existUser){
-        throw new Error('User already exists'); 
-      }
       const updatedData = await this.userRepository.createQueryBuilder("user")
       .update<User>(User, { ...userData })
       .where("user.id = :id", { id: id })

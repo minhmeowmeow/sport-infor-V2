@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { Sport } from './sport.entity';
 
 @Injectable()
-export class RoleService {
+export class SportService {
     constructor(
         @InjectRepository(Sport)
         private readonly sportRepository: Repository<Sport>,
@@ -16,20 +16,20 @@ export class RoleService {
     }
 
     async findOne(id: number): Promise<Sport> {
-        const role = await this.sportRepository.findOne({
+        const sport = await this.sportRepository.findOne({
           where: {
               id: id
           }
       });
-        if (!role) {
-            throw new NotFoundException(`role with ID ${id} not found`);
+        if (!sport) {
+            throw new NotFoundException(`sport with ID ${id} not found`);
         }
-        return role;
+        return sport;
     }
 
     async create(sportData: Sport): Promise<Sport> {
-        // const newrole = this.sportRepository.create(sportData);
-        // return this.sportRepository.save(newrole);
+        // const newsport = this.sportRepository.create(sportData);
+        // return this.sportRepository.save(newsport);
         await this.sportRepository
         .createQueryBuilder()
         .insert()
@@ -43,13 +43,13 @@ export class RoleService {
     async update(id: number, sportData: Sport): Promise<Sport> {
       // return this.sportRepository.save({
       //     id: id,
-      //     rolename: sportData.rolename,
+      //     sportname: sportData.sportname,
       //     password: sportData.password,
       //     email: sportData.email
       // });
-      const updatedData = await this.sportRepository.createQueryBuilder("role")
+      const updatedData = await this.sportRepository.createQueryBuilder("sport")
       .update<Sport>(Sport, { ...sportData })
-      .where("role.id = :id", { id: id })
+      .where("sport.id = :id", { id: id })
       .returning("*") // returns all the column values
       .updateEntity(true)
       .execute();
