@@ -7,7 +7,7 @@ import { RoleController } from './role/role.controller';
 import { UserService } from './user/user.service';
 import { RoleService } from './role/role.service';
 import { User } from './user/user.entity';
-import { role } from './role/role.entity';
+import { Role } from './role/role.entity';
 
 
 @Module({
@@ -17,12 +17,12 @@ import { role } from './role/role.entity';
     port: 5432,
     username: 'postgres',
     password: '12345678',
-    database: 'postgres',
+    database: 'sportsinfo',
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
     synchronize: true,
     logging: true,
   }),
-  TypeOrmModule.forFeature([User, role]),
+  TypeOrmModule.forFeature([User, Role]),
   ],
   controllers: [AppController, UserController, RoleController],
   providers: [AppService, UserService, RoleService],

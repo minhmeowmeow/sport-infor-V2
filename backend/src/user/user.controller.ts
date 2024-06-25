@@ -17,9 +17,22 @@ export class UserController {
     return this.userService.findOne(id);
   }
 
-  @Post()
-  create(@Body() userData: User): Promise<User> {
+  @Post("/login")
+  login(@Body() userData: User): Promise<User | null> {
+    return this.userService.login(userData);
+  }
+
+  @Post("/newuser")
+  createNewUser(@Body() userData: User): Promise<User> {
     return this.userService.create(userData);
+  }
+
+  @Post("/newadmin")
+  createNewAdmin(@Body() requestBody: { userData: User, role: string }): Promise<User | null> {
+    if(requestBody.role = "ROLE_ADMIN"){
+      return this.userService.create(requestBody.userData);
+    }
+    return null;
   }
 
   @Put(':id')

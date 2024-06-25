@@ -1,21 +1,21 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { role } from './role.entity';
+import { Role } from './role.entity';
 
 @Injectable()
 export class RoleService {
     constructor(
-        @InjectRepository(role)
-        private readonly roleRepository: Repository<role>,
+        @InjectRepository(Role)
+        private readonly roleRepository: Repository<Role>,
     ) {}
 
     
-    async findAll(): Promise<role[]> {
+    async findAll(): Promise<Role[]> {
       return this.roleRepository.find();
     }
 
-    async findOne(id: number): Promise<role> {
+    async findOne(id: number): Promise<Role> {
         const role = await this.roleRepository.findOne({
           where: {
               id: id
@@ -27,20 +27,20 @@ export class RoleService {
         return role;
     }
 
-    async create(roleData: role): Promise<role> {
+    async create(roleData: Role): Promise<Role> {
         // const newrole = this.roleRepository.create(roleData);
         // return this.roleRepository.save(newrole);
         await this.roleRepository
         .createQueryBuilder()
         .insert()
-        .into(role)
+        .into(Role)
         .values(roleData)
         .returning("id")
         .execute()
         return ;
     }
 
-    async update(id: number, roleData: role): Promise<role> {
+    async update(id: number, roleData: Role): Promise<Role> {
       // return this.roleRepository.save({
       //     id: id,
       //     rolename: roleData.rolename,
@@ -48,7 +48,7 @@ export class RoleService {
       //     email: roleData.email
       // });
       const updatedData = await this.roleRepository.createQueryBuilder("role")
-      .update<role>(role, { ...roleData })
+      .update<Role>(Role, { ...roleData })
       .where("role.id = :id", { id: id })
       .returning("*") // returns all the column values
       .updateEntity(true)
@@ -59,7 +59,7 @@ export class RoleService {
     async delete(id: number): Promise<void> {
         const result = await this.roleRepository.createQueryBuilder()
         .delete()
-        .from(role)
+        .from(Role)
         .where("id = :id", { id: id })
         .execute()
     }

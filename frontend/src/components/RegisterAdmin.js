@@ -1,4 +1,4 @@
-import React, {useState}  from 'react';
+import React, {useState} from 'react';
 import './style/Auth.css';
 
 function Register() {
@@ -15,7 +15,7 @@ function Register() {
       password: password,
       role: {
         id: 1,
-        name: 'ROLE_USER'
+        name: 'ROLE_ADMIN'
       }
     };
 
@@ -25,7 +25,7 @@ function Register() {
       }
       const role = localStorage.getItem('userRole').replace(/^"(.*)"$/, '$1');
       // Send POST request to your backend
-      const response = await fetch('http://localhost:3000/users/newuser', {
+      const response = await fetch('http://localhost:3000/users/newadmin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,8 +51,6 @@ function Register() {
       setEmail('');
       setPassword('');
       setRepeatPassword('');
-
-      window.location.href = '/Login'; 
 
     } catch (error) {
       console.error('Error registering admin:', error.message);
@@ -126,6 +124,12 @@ function Register() {
               onChange={(e) => setRepeatPassword(e.target.value)}
             />
             </div>
+          <div className="form-check d-flex justify-content-center mb-4">
+            <input className="form-check-input me-2" type="checkbox" value="" id="registerCheck" defaultChecked aria-describedby="registerCheckHelpText" />
+            <label className="form-check-label" htmlFor="registerCheck">
+              I have read and agree to the terms
+            </label>
+          </div>
           <button type="submit" className="btn btn-primary btn-block mb-3">Sign up</button>
         </form>
       </div>
