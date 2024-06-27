@@ -39,8 +39,9 @@ export class TournamentService {
     }
 
     async update(id: number, tournamentData: Tournament): Promise<Tournament> {
-      const updatedData = await this.tournamentRepository.createQueryBuilder("tournament")
-      .update<Tournament>(Tournament, { ...tournamentData })
+      const updatedData = await this.tournamentRepository.createQueryBuilder()
+      .update(Tournament)
+      .set({ ...tournamentData })
       .where("tournament.id = :id", { id: id })
       .returning("*") // returns all the column values
       .updateEntity(true)

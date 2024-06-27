@@ -47,8 +47,9 @@ export class RoleService {
       //     password: roleData.password,
       //     email: roleData.email
       // });
-      const updatedData = await this.roleRepository.createQueryBuilder("role")
-      .update<Role>(Role, { ...roleData })
+      const updatedData = await this.roleRepository.createQueryBuilder()
+      .update(Role)
+      .set({...roleData})
       .where("role.id = :id", { id: id })
       .returning("*") // returns all the column values
       .updateEntity(true)

@@ -39,8 +39,9 @@ export class RecommendService {
     }
 
     async update(id: number, recommendData: RecommendScore): Promise<RecommendScore> {
-      const updatedData = await this.recommendRepository.createQueryBuilder("recommend")
-      .update<RecommendScore>(RecommendScore, { ...recommendData })
+      const updatedData = await this.recommendRepository.createQueryBuilder()
+      .update(RecommendScore)
+      .set({...recommendData})
       .where("recommend_score.id = :id", { id: id })
       .returning("*") // returns all the column values
       .updateEntity(true)

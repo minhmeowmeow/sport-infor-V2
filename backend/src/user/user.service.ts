@@ -77,12 +77,13 @@ export class UserService {
       //     password: userData.password,
       //     email: userData.email
       // });
-      const updatedData = await this.userRepository.createQueryBuilder("user")
-      .update<User>(User, { ...userData })
-      .where("user.id = :id", { id: id })
-      .returning("*") // returns all the column values
-      .updateEntity(true)
-      .execute();
+      const updatedData = await this.userRepository
+    .createQueryBuilder()
+    .update(User)
+    .set({ ...userData })
+    .where("id = :id", { id: id })
+    .returning("*")
+    .execute();
     return updatedData.raw[0];
     }
 

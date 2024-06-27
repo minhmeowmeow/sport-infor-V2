@@ -39,8 +39,9 @@ export class NewsService {
     }
 
     async update(id: number, newsData: News): Promise<News> {
-      const updatedData = await this.newsRepository.createQueryBuilder("news")
-      .update<News>(News, { ...newsData })
+      const updatedData = await this.newsRepository.createQueryBuilder()
+      .update(News)
+      .set({...newsData})
       .where("news.id = :id", { id: id })
       .returning("*") // returns all the column values
       .updateEntity(true)

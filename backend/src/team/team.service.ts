@@ -39,8 +39,9 @@ export class TeamService {
     }
 
     async update(id: number, teamData: Team): Promise<Team> {
-      const updatedData = await this.teamRepository.createQueryBuilder("team")
-      .update<Team>(Team, { ...teamData })
+      const updatedData = await this.teamRepository.createQueryBuilder()
+      .update(Team)
+      .set({...teamData})
       .where("team.id = :id", { id: id })
       .returning("*") // returns all the column values
       .updateEntity(true)
