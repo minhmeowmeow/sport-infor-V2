@@ -28,8 +28,6 @@ export class CountryService {
     }
 
     async create(countryData: Country): Promise<Country> {
-        // const newcountry = this.countryRepository.create(countryData);
-        // return this.countryRepository.save(newcountry);
         await this.countryRepository
         .createQueryBuilder()
         .insert()
@@ -41,8 +39,9 @@ export class CountryService {
     }
 
     async update(id: number, countryData: Country): Promise<Country> {
-      const updatedData = await this.countryRepository.createQueryBuilder("country")
-      .update<Country>(Country, { ...countryData })
+      const updatedData = await this.countryRepository.createQueryBuilder()
+      .update(Country)
+      .set({...countryData})
       .where("country.id = :id", { id: id })
       .returning("*") // returns all the column values
       .updateEntity(true)

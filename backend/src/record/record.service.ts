@@ -39,8 +39,9 @@ export class RecordService {
     }
 
     async update(id: number, recordData: Record): Promise<Record> {
-      const updatedData = await this.recordRepository.createQueryBuilder("record")
-      .update<Record>(Record, { ...recordData })
+      const updatedData = await this.recordRepository.createQueryBuilder()
+      .update(Record)
+      .set({...recordData})
       .where("record.id = :id", { id: id })
       .returning("*") // returns all the column values
       .updateEntity(true)

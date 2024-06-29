@@ -39,8 +39,9 @@ export class OrganizationService {
     }
 
     async update(id: number, organizationData: Organization): Promise<Organization> {
-      const updatedData = await this.organizationRepository.createQueryBuilder("organization")
-      .update<Organization>(Organization, { ...organizationData })
+      const updatedData = await this.organizationRepository.createQueryBuilder()
+      .update(Organization)
+      .set({...organizationData})
       .where("organization.id = :id", { id: id })
       .returning("*") // returns all the column values
       .updateEntity(true)

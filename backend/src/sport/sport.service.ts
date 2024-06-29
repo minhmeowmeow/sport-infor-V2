@@ -47,8 +47,9 @@ export class SportService {
       //     password: sportData.password,
       //     email: sportData.email
       // });
-      const updatedData = await this.sportRepository.createQueryBuilder("sport")
-      .update<Sport>(Sport, { ...sportData })
+      const updatedData = await this.sportRepository.createQueryBuilder()
+      .update(Sport)
+      .set({...sportData})
       .where("sport.id = :id", { id: id })
       .returning("*") // returns all the column values
       .updateEntity(true)

@@ -46,8 +46,9 @@ export class SportToCountryService {
     }
 
     async update(sport_id: number, country_id: number, Data: SportToCountry): Promise<SportToCountry> {
-      const updatedData = await this.sportcountryRepository.createQueryBuilder("sport_country")
-      .update<SportToCountry>(SportToCountry, { ...Data })
+      const updatedData = await this.sportcountryRepository.createQueryBuilder()
+      .update(SportToCountry)
+      .set({...Data})
       .where("country_id.id = :id", { id: country_id })
       .andWhere("sport_id.id = :id", { id: sport_id })
       .returning("*") // returns all the column values

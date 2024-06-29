@@ -16,43 +16,44 @@ export class GuestService {
     }
 
     async findOne(id: number): Promise<Guest> {
-        const user = await this.guestRepository.findOne({
+        const guest = await this.guestRepository.findOne({
           where: {
               id: id
           }
       });
-        if (!user) {
-            throw new NotFoundException(`User with ID ${id} not found`);
+        if (!guest) {
+            throw new NotFoundException(`guest with ID ${id} not found`);
         }
-        return user;
+        return guest;
     }
 
-    async create(userData: Guest): Promise<Guest> {
+    async create(guestData: Guest): Promise<Guest> {
         
       const result = await this.guestRepository
       .createQueryBuilder()
       .insert()
       .into(Guest)
-      .values(userData)
+      .values(guestData)
       .returning("id")
       .execute()
-      const newlyInsertedUser = await this.guestRepository.findOne({
+      const newlyInsertedguest = await this.guestRepository.findOne({
         where: {
             id: result.raw.insertid
         }
     });
 
-      if (!newlyInsertedUser) {
-        throw new Error('Failed to fetch newly created user');
+      if (!newlyInsertedguest) {
+        throw new Error('Failed to fetch newly created guest');
       }
 
-      return newlyInsertedUser;
+      return newlyInsertedguest;
     }
 
-    async update(id: number, userData: Guest): Promise<Guest> {
-      const updatedData = await this.guestRepository.createQueryBuilder("user")
-      .update<Guest>(Guest, { ...userData })
-      .where("user.id = :id", { id: id })
+    async update(id: number, guestData: Guest): Promise<Guest> {
+      const updatedData = await this.guestRepository.createQueryBuilder()
+      .update(Guest)
+      .set({...guestData})
+      .where("guest.id = :id", { id: id })
       .returning("*") // returns all the column values
       .updateEntity(true)
       .execute();

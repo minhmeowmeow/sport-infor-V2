@@ -39,8 +39,9 @@ export class PlayerService {
     }
 
     async update(id: number, playerData: Player): Promise<Player> {
-      const updatedData = await this.playerRepository.createQueryBuilder("player")
-      .update<Player>(Player, { ...playerData })
+      const updatedData = await this.playerRepository.createQueryBuilder()
+      .update(Player)
+      .set({...playerData})
       .where("player.id = :id", { id: id })
       .returning("*") // returns all the column values
       .updateEntity(true)
