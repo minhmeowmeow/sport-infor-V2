@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
-import './style/style_sport.css';
+import '../style/style_sport.css';
 
 function SportNew() {
   const [name, setName] = useState('');

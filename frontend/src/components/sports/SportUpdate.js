@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
-import './style/style_sport.css';
+import '../style/style_sport.css';
 
 function SportUpdate() {
   const [name, setName] = useState('');
@@ -11,6 +11,10 @@ function SportUpdate() {
   const [time_invented, setTime_invented] = useState('');
   const [sport, setSport] = useState(null);
 
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const id = params.get('id');
+
   useEffect(() => {
     fetchSport();
     
@@ -19,11 +23,11 @@ function SportUpdate() {
     setIs_team(sport.is_team);
     setRule(sport.rule);
     setTime_invented(sport.time_invented);
-}, []);
+  }, []);
 
   const handleUpdateSport = async (e) => {
     e.preventDefault();
-    const userData = {
+    const sportData = {
       name: name,
       strategy: strategy,
       is_team: is_team,
@@ -32,8 +36,6 @@ function SportUpdate() {
     };
 
     try {
-      const role = localStorage.getItem('userRole').replace(/^"(.*)"$/, '$1');
-      // Send POST request to your backend
       const response = await fetch('http://localhost:3000/sports', {
         method: 'PUT',
         headers: {
@@ -54,11 +56,11 @@ function SportUpdate() {
       // Handle successful registration (e.g., show success message, redirect user, etc.)
       alert('Registration successful!');
 
-      // Clear form fields after successful registration
       setName('');
-      setEmail('');
-      setPassword('');
-      setRepeatPassword('');
+      setStrategy('');
+      setIs_team('');
+      setRule('');
+      setTime_invented('');
 
       window.location.href = '/Login'; 
 
@@ -71,17 +73,16 @@ function SportUpdate() {
 
   const fetchSport = () => {
   
-    axios.get(`http://localhost:3000/sports/${id}`)
-      .then(response => {
-        setSport(response.data);
+    const response2 = axios.get(`http://localhost:3000/sports/${id}`)
+      .then(response2 => {
+        setSport(response2.data);
       })
       .catch(error => {
         console.error('There was an error fetching the sport!', error);
       });
 
       
-      if (!response.ok) {
-        setFailureMessage('User registration was not successful!');
+      if (!response2.ok) {
         throw new Error('Network response was not ok');
       }
 

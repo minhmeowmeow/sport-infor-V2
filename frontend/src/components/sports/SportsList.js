@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './style/SportsList.css';
+import '../style/SportsList.css';
 
 function SportsList() {
   const [sports, setSports] = useState([]);
@@ -32,9 +32,8 @@ function SportsList() {
   };
 
   const updateSport = (sportId) => {
-    // Navigate to the update user page with the userId as a parameter
-    history.push(`/update/${sportId}`);
-};
+    window.location.href(`/update/${sportId}`);
+  };
 
   return (
     <div className="container">
