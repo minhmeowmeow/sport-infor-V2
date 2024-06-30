@@ -1,27 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
-import './style/style_sport.css';
+import '../style/style_sport.css';
 
-function SportUpdate() {
+function SportNew() {
   const [name, setName] = useState('');
   const [strategy, setStrategy] = useState('');
   const [is_team, setIs_team] = useState('');
   const [rule, setRule] = useState('');
   const [time_invented, setTime_invented] = useState('');
-  const [sport, setSport] = useState(null);
+  const [failureMessage, setFailureMessage] = useState('');
 
-  useEffect(() => {
-    fetchSport();
-    
-    setName(sport.name);
-    setStrategy(sport.strategy);
-    setIs_team(sport.is_team);
-    setRule(sport.rule);
-    setTime_invented(sport.time_invented);
-}, []);
-
-  const handleUpdateSport = async (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     const userData = {
       name: name,
@@ -35,7 +25,7 @@ function SportUpdate() {
       const role = localStorage.getItem('userRole').replace(/^"(.*)"$/, '$1');
       // Send POST request to your backend
       const response = await fetch('http://localhost:3000/sports', {
-        method: 'PUT',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -45,20 +35,21 @@ function SportUpdate() {
       });
 
       if (!response.ok) {
+        setFailureMessage('User registration was not successful!');
         throw new Error('Network response was not ok');
       }
 
       const data = await response.json();
       console.log('New admin user created:', data);
 
-      // Handle successful registration (e.g., show success message, redirect user, etc.)
-      alert('Registration successful!');
+      alert('New Sport successful!');
 
-      // Clear form fields after successful registration
       setName('');
-      setEmail('');
-      setPassword('');
-      setRepeatPassword('');
+      setStrategy('');
+      setIs_team('');
+      setRule('');
+      setTime_invented('');
+      setFailureMessage('');
 
       window.location.href = '/Login'; 
 
@@ -69,27 +60,11 @@ function SportUpdate() {
     }
   };
 
-  const fetchSport = () => {
-  
-    axios.get(`http://localhost:3000/sports/${id}`)
-      .then(response => {
-        setSport(response.data);
-      })
-      .catch(error => {
-        console.error('There was an error fetching the sport!', error);
-      });
-
-      
-      if (!response.ok) {
-        setFailureMessage('User registration was not successful!');
-        throw new Error('Network response was not ok');
-      }
-
-  };
-
   return (
     <div className='football-detail'>
-        <form onSubmit={handleUpdateSport}>
+    {/* Show message if fail */}
+    {failureMessage && <div className="success-message">{failureMessage}</div>}
+        <form onSubmit={handleRegisterSubmit}>
           <div className="form-outline mb-4">
             <label className="form-label" htmlFor="registerName">Tên:</label>
             <input 
@@ -151,4 +126,4 @@ function SportUpdate() {
   );
 }
 
-export default SportUpdate;
+export default SportNew;

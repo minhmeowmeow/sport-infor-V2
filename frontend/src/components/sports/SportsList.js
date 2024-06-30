@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './style/SportsList.css';
+import '../style/SportsList.css';
 
 function SportsList() {
   const [sports, setSports] = useState([]);
@@ -31,6 +31,9 @@ function SportsList() {
           });
   };
 
+  const updateSport = (sportId) => {
+    window.location.href(`/update/${sportId}`);
+  };
 
   return (
     <div className="container">
@@ -43,6 +46,7 @@ function SportsList() {
                 <li key={index} className="sports-item">
                     <a href={`/sports/detail?id=${sports.id}`}>{sports.name}</a>
                     <button onClick={() => deleteSport(sports.id)}>Delete</button>
+                    <button onClick={() => updateSport(sports.id)}>Update</button>
                 </li>
             ))}
             </ul>

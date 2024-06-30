@@ -5,7 +5,7 @@ CREATE DATABASE sportsinfo;
 \c sportsinfo;
 
 -- Drop tables if they exist (for re-running the script)
-DROP TABLE IF EXISTS sport_country, record, recommend_score, player, organization, news, guestbook, country, users, team, tournament, sports, role;
+DROP TABLE IF EXISTS sport_country, record, recommend_score, player, news, guestbook, country, users, team, tournament, sports, role;
 
 -- Create table `country`
 CREATE TABLE country (
@@ -16,16 +16,6 @@ CREATE TABLE country (
 -- Insert data into `country`
 INSERT INTO country (id, name) VALUES
 (1, 'countryTest');
-
--- Create table `organization`
-CREATE TABLE organization (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(50) NOT NULL
-);
-
--- Insert data into `organization`
-INSERT INTO organization (id, name) VALUES
-(1, 'orgTest');
 
 -- Create table `recommend_score`
 CREATE TABLE recommend_score (
@@ -82,12 +72,10 @@ CREATE TABLE sport_country (
 CREATE TABLE team (
   id SERIAL PRIMARY KEY,
   sport_id INT NOT NULL,
-  organization_id INT NOT NULL,
   name VARCHAR(50) NOT NULL,
   year_form INT NOT NULL,
   still_active BOOLEAN NOT NULL,
-  FOREIGN KEY (sport_id) REFERENCES sports (id),
-  FOREIGN KEY (organization_id) REFERENCES organization (id)
+  FOREIGN KEY (sport_id) REFERENCES sports (id)
 );
 
 -- Insert data into `team`
