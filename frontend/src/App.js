@@ -48,6 +48,7 @@ import Swimming_Michael_Phelps from './components/player/swimming/Swimming_Micha
 import AthleticsDetail from './components/AthleticsDetail';
 import Athletics_Usain_Bolt from './components/player/athletics/Athletics_Usain_Bolt';
 import Athletics_Allyson_Felix from './components/player/athletics/Athletics_Allyson_Felix';
+import SportUpdate from './components/SportUpdate';
 
 
 function App() {
@@ -100,6 +101,7 @@ function App() {
         <Route path="/guestbook" element={<Guestbook />} />
         <Route path="/sports" element={<SportsList />} />
         <Route path="/sports/:id" element={<SportDetail />} />
+        <Route path="/sports/update/:id" element={<SportUpdate />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/registeradmin" element={<RegisterAdmin />} />
