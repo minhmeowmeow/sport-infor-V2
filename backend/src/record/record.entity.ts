@@ -1,4 +1,3 @@
-import { Organization } from 'src/organization/organization.entity';
 import { Player } from 'src/player/player.entity';
 import { Tournament } from 'src/tournament/tournament.entity';
 import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from 'typeorm';
@@ -19,7 +18,7 @@ export class Record {
   
   @ManyToOne(() => Player, player => player.record)
   @JoinColumn({
-  name: "record_id",
+  name: "player_id",
   referencedColumnName: 'id',
   foreignKeyConstraintName: 'record_player_id_fkey',
   }) 

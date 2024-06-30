@@ -1,4 +1,4 @@
-import React, {useState}  from 'react';
+import React, {useState} from 'react';
 import './style/Auth.css';
 
 function Register() {
@@ -6,7 +6,8 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-
+  const [failureMessage, setFailureMessage] = useState('');
+  
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     const userData = {
@@ -14,13 +15,13 @@ function Register() {
       email: email,
       password: password,
       role: {
-        id: 1,
+        id: 2,
         name: 'ROLE_USER'
       }
     };
 
     try {
-      if(userData.password != repeatPassword){
+      if(userData.password !== repeatPassword){
         throw new Error('Password Was Not The Same');
       }
       const role = localStorage.getItem('userRole').replace(/^"(.*)"$/, '$1');
@@ -37,11 +38,10 @@ function Register() {
       });
 
       if (!response.ok) {
+        setFailureMessage('User registration was not successful!');
         throw new Error('Network response was not ok');
       }
 
-      const data = await response.json();
-      console.log('New admin user created:', data);
 
       // Handle successful registration (e.g., show success message, redirect user, etc.)
       alert('Registration successful!');
@@ -51,19 +51,22 @@ function Register() {
       setEmail('');
       setPassword('');
       setRepeatPassword('');
+      setFailureMessage('');
 
       window.location.href = '/Login'; 
 
     } catch (error) {
-      console.error('Error registering admin:', error.message);
+      setFailureMessage('User registration was not successful!');
       // Handle error (e.g., show error message to user)
-      alert('Error registering admin. Please try again.');
+      alert('Error registering new user. Please try again.');
     }
   };
 
   return (
     <div className="auth-container">
       <div className="auth-tabs">
+            {/* Show message if fail */}
+            {failureMessage && <div className="success-message">{failureMessage}</div>}
         <h2 className="auth-title">Register</h2>
         <form onSubmit={handleRegisterSubmit}>
           <div className="text-center mb-3">
@@ -126,6 +129,12 @@ function Register() {
               onChange={(e) => setRepeatPassword(e.target.value)}
             />
             </div>
+          <div className="form-check d-flex justify-content-center mb-4">
+            <input className="form-check-input me-2" type="checkbox" value="" id="registerCheck" defaultChecked aria-describedby="registerCheckHelpText" />
+            <label className="form-check-label" htmlFor="registerCheck">
+              I have read and agree to the terms
+            </label>
+          </div>
           <button type="submit" className="btn btn-primary btn-block mb-3">Sign up</button>
         </form>
       </div>

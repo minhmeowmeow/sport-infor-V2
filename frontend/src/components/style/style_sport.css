@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+
+  .football-detail {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .football-detail h1 {
+    text-align: center;
+    color: #0a6131;
+  }
+  
+  .football-detail section {
+    margin: 50px 0;
+  }
+  
+  .football-detail section h2 {
+    color: #0c0808;
+    border-bottom: 2px solid #144d1e;
+    padding-bottom: 5px;
+  }
+  
+  .football-detail section p {
+    color: #090606e7;
+    line-height: 1.6;
+  }
+  
+
+  .player-image {
+    width: 150px;
+    height: 200px;
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.player-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}

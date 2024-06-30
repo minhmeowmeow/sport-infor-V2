@@ -19,7 +19,7 @@ export class NewsService {
         const news = await this.newsRepository.findOne({
           where: {
               id: id
-          }
+          }, relations: ['user'] 
       });
         if (!news) {
             throw new NotFoundException(`news with ID ${id} not found`);

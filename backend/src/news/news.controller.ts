@@ -7,14 +7,14 @@ import { News } from './news.entity';
 export class NewsController {
   constructor(private readonly newsService: NewsService) {}
 
-  @Get()
-  findAll(): Promise<News[]> {
-    return this.newsService.findAll();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: number): Promise<News> {
     return this.newsService.findOne(id);
+  }
+
+  @Get()
+  findAll(): Promise<News[]> {
+    return this.newsService.findAll();
   }
 
   @Post()

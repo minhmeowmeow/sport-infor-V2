@@ -7,14 +7,14 @@ import { Tournament } from './tournament.entity';
 export class TournamentController {
   constructor(private readonly tournamentService: TournamentService) {}
 
-  @Get()
-  findAll(): Promise<Tournament[]> {
-    return this.tournamentService.findAll();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: number): Promise<Tournament> {
     return this.tournamentService.findOne(id);
+  }
+
+  @Get()
+  findAll(): Promise<Tournament[]> {
+    return this.tournamentService.findAll();
   }
 
   @Post()

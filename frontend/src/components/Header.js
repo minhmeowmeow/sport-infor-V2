@@ -5,7 +5,10 @@ import './style/Header.css';
 function Header({ user }) {
   return (
     <header>
-      <h1>SportsInfo</h1>
+      <div className="logo-container">
+        <img src="images/icon/logo.jpg" alt="Logo" className="logo" />
+        <h1>SportsInfo</h1>
+      </div>
       <nav>
         <ul>
           <li><Link to="/">Home</Link></li>

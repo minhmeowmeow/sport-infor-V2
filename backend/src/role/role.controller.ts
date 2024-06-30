@@ -7,14 +7,14 @@ import { Role } from './role.entity';
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}
 
-  @Get()
-  findAll(): Promise<Role[]> {
-    return this.roleService.findAll();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: number): Promise<Role> {
     return this.roleService.findOne(id);
+  }
+
+  @Get()
+  findAll(): Promise<Role[]> {
+    return this.roleService.findAll();
   }
 
   @Post()

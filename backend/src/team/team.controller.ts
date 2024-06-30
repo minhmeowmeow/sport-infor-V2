@@ -7,14 +7,14 @@ import { Team } from './team.entity';
 export class TeamController {
   constructor(private readonly teamService: TeamService) {}
 
-  @Get()
-  findAll(): Promise<Team[]> {
-    return this.teamService.findAll();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: number): Promise<Team> {
     return this.teamService.findOne(id);
+  }
+
+  @Get()
+  findAll(): Promise<Team[]> {
+    return this.teamService.findAll();
   }
 
   @Post()
