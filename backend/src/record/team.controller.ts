@@ -7,14 +7,14 @@ import { Record } from './record.entity';
 export class RecordController {
   constructor(private readonly recordService: RecordService) {}
 
-  @Get()
-  findAll(): Promise<Record[]> {
-    return this.recordService.findAll();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: number): Promise<Record> {
     return this.recordService.findOne(id);
+  }
+
+  @Get()
+  findAll(): Promise<Record[]> {
+    return this.recordService.findAll();
   }
 
   @Post()

@@ -7,14 +7,14 @@ import { SportToCountry } from './sportcountry.entity';
 export class SportToCountryController {
   constructor(private readonly sportToCountryService: SportToCountryService) {}
 
-  @Get()
-  findAll(): Promise<SportToCountry[]> {
-    return this.sportToCountryService.findAll();
-  }
-
   @Get(':id')
   findOne(@Param('sport_id') sport_id: number, @Param('country_id') country_id: number): Promise<SportToCountry> {
     return this.sportToCountryService.findOne(sport_id, country_id);
+  }
+
+  @Get()
+  findAll(): Promise<SportToCountry[]> {
+    return this.sportToCountryService.findAll();
   }
 
   @Post()

@@ -7,14 +7,14 @@ import { RecommendScore } from './recommend.entity';
 export class RecommendController {
   constructor(private readonly recommendService: RecommendService) {}
 
-  @Get()
-  findAll(): Promise<RecommendScore[]> {
-    return this.recommendService.findAll();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: number): Promise<RecommendScore> {
     return this.recommendService.findOne(id);
+  }
+
+  @Get()
+  findAll(): Promise<RecommendScore[]> {
+    return this.recommendService.findAll();
   }
 
   @Post()

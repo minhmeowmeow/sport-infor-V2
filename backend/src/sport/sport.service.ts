@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { Sport } from './sport.entity';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class SportService {
         const sport = await this.sportRepository.findOne({
           where: {
               id: id
-          }
+          }, relations: ['player'] 
       });
         if (!sport) {
             throw new NotFoundException(`sport with ID ${id} not found`);
@@ -38,6 +38,19 @@ export class SportService {
         .returning("id")
         .execute()
         return ;
+    }
+
+    async searchByName(Name: string): Promise<Sport[] | null> {
+        const sport = await this.sportRepository.find({
+          where: {
+            name: ILike(`%${Name}%`)
+          }
+      });
+        if (!sport) {
+            return null;
+            // throw new NotFoundException(`User was not found`);
+        }
+        return sport;
     }
 
     async update(id: number, sportData: Sport): Promise<Sport> {

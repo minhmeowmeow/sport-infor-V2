@@ -7,14 +7,19 @@ import { Sport } from './sport.entity';
 export class SportController {
   constructor(private readonly sportService: SportService) {}
 
-  @Get()
-  findAll(): Promise<Sport[]> {
-    return this.sportService.findAll();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: number): Promise<Sport> {
     return this.sportService.findOne(id);
+  }
+
+  @Get(':search')
+  findByName(@Param('search') search: string): Promise<Sport[]> {
+    return this.sportService.searchByName(search);
+  }
+
+  @Get()
+  findAll(): Promise<Sport[]> {
+    return this.sportService.findAll();
   }
 
   @Post()

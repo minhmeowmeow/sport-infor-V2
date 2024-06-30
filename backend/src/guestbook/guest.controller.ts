@@ -7,14 +7,14 @@ import { Guest } from './guest.entity';
 export class GuestController {
   constructor(private readonly guestService: GuestService) {}
 
-  @Get()
-  findAll(): Promise<Guest[]> {
-    return this.guestService.findAll();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: number): Promise<Guest> {
     return this.guestService.findOne(id);
+  }
+
+  @Get()
+  findAll(): Promise<Guest[]> {
+    return this.guestService.findAll();
   }
 
   @Post("/new")

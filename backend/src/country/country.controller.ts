@@ -7,14 +7,14 @@ import { Country } from './country.entity';
 export class CountryController {
   constructor(private readonly countryService: CountryService) {}
 
-  @Get()
-  findAll(): Promise<Country[]> {
-    return this.countryService.findAll();
-  }
-
   @Get(':id')
   findOne(@Param('id') id: number): Promise<Country> {
     return this.countryService.findOne(id);
+  }
+
+  @Get()
+  findAll(): Promise<Country[]> {
+    return this.countryService.findAll();
   }
 
   @Post()
