@@ -14,7 +14,7 @@ export class Player {
   @Column()
   age: number
 
-  @Column({ length: 500})
+  @Column({ length: 5000})
   description: string
 
   @Column({ length: 50 })
@@ -25,17 +25,16 @@ export class Player {
   name: "sport_id",
   referencedColumnName: 'id',
   foreignKeyConstraintName: 'player_sport_id_fkey',
-  }) 
-  sport_id: Sport[];
+  })
+  sport_id: Sport;
   
-  @ManyToOne(() => Team, team => team.player)
+  @ManyToOne(() => Team, team => team.player, {nullable: true})
   @JoinColumn({
   name: "team_id",
   referencedColumnName: 'id',
   foreignKeyConstraintName: 'player_team_id_fkey',
   })
-  @Column({nullable: true})
-  team_id: Sport[];
+  team_id: Sport;
   
   @OneToMany(() => Record, record => record.player_id)
   record: Record[];

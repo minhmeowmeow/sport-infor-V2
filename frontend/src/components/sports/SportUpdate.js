@@ -9,21 +9,17 @@ function SportUpdate() {
   const [is_team, setIs_team] = useState('');
   const [rule, setRule] = useState('');
   const [time_invented, setTime_invented] = useState('');
-  const [sport, setSport] = useState(null);
 
   const { search } = useLocation();
   const params = new URLSearchParams(search);
   const id = params.get('id');
 
   useEffect(() => {
-    fetchSport();
+    if(id){
+      fetchSport();
     
-    setName(sport.name);
-    setStrategy(sport.strategy);
-    setIs_team(sport.is_team);
-    setRule(sport.rule);
-    setTime_invented(sport.time_invented);
-  }, []);
+    }
+  }, [id]);
 
   const handleUpdateSport = async (e) => {
     e.preventDefault();
@@ -36,14 +32,12 @@ function SportUpdate() {
     };
 
     try {
-      const response = await fetch('http://localhost:3000/sports', {
+      let response = await fetch(`http://localhost:3000/sports/update?id=${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          sportData: sportData
-        }),
+        body: JSON.stringify(sportData),
       });
 
       if (!response.ok) {
@@ -51,10 +45,10 @@ function SportUpdate() {
       }
 
       const data = await response.json();
-      console.log('New admin user created:', data);
+      console.log('Sport updated:', data);
 
       // Handle successful registration (e.g., show success message, redirect user, etc.)
-      alert('Registration successful!');
+      alert('Sport updated!');
 
       setName('');
       setStrategy('');
@@ -62,30 +56,28 @@ function SportUpdate() {
       setRule('');
       setTime_invented('');
 
-      window.location.href = '/Login'; 
+      window.location.href = '/sports'; 
 
     } catch (error) {
-      console.error('Error registering admin:', error.message);
+      console.error('Error updating sport:', error.message);
       // Handle error (e.g., show error message to user)
-      alert('Error registering admin. Please try again.');
+      alert('Error updating sport. Please try again.');
     }
   };
 
-  const fetchSport = () => {
+  const fetchSport = async () => {
   
-    const response2 = axios.get(`http://localhost:3000/sports/${id}`)
-      .then(response2 => {
-        setSport(response2.data);
+    axios.get(`http://localhost:3000/sports/${id}`)
+      .then(response => {
+      setName(response.data.name);
+      setStrategy(response.data.strategy);
+      setIs_team(response.data.is_team);
+      setRule(response.data.rule);
+      setTime_invented(response.data.time_invented);
       })
       .catch(error => {
         console.error('There was an error fetching the sport!', error);
       });
-
-      
-      if (!response2.ok) {
-        throw new Error('Network response was not ok');
-      }
-
   };
 
   return (

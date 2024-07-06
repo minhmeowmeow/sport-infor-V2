@@ -37,7 +37,7 @@ export class SportService {
         .values(sportData)
         .returning("id")
         .execute()
-        return ;
+        return sportData;
     }
 
     async searchByName(Name: string): Promise<Sport[] | null> {
@@ -54,20 +54,20 @@ export class SportService {
     }
 
     async update(id: number, sportData: Sport): Promise<Sport> {
-      // return this.sportRepository.save({
-      //     id: id,
-      //     sportname: sportData.sportname,
-      //     password: sportData.password,
-      //     email: sportData.email
-      // });
       const updatedData = await this.sportRepository.createQueryBuilder()
-      .update(Sport)
-      .set({...sportData})
-      .where("sport.id = :id", { id: id })
-      .returning("*") // returns all the column values
-      .updateEntity(true)
-      .execute();
-    return updatedData.raw[0];
+        .update(Sport) // Specify the entity name (not necessarily the table name)
+        .set({
+          name: sportData.name,
+          strategy: sportData.strategy,
+          is_team: sportData.is_team,
+          rule: sportData.rule,
+          time_invented: sportData.time_invented
+        })
+        .where("id = :id", { id: id }) // Use the alias or directly use the column name
+        .returning("*") // Return all columns of the updated row
+        .execute();
+    
+      return updatedData.raw[0]; // Assuming you want to return the updated entity
     }
 
     async delete(id: number): Promise<void> {

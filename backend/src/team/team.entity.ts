@@ -25,7 +25,7 @@ export class Team {
   sport_id: Sport[];
   
   @OneToMany(() => Player, player => player.sport_id)
-  player: Player[];
+  player: Player;
 
   
 }

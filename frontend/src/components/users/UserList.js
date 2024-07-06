@@ -20,7 +20,8 @@ const UserList = () => {
     };
 
     const deleteUser = (userId) => {
-        axios.delete(`http://localhost:3000/users/${userId}`)
+        if (window.confirm('Are you sure you want to delete this user?')) {
+        axios.delete(`http://localhost:3000/users/delete?id=${userId}`)
             .then(response => {
                 console.log('User deleted:', response.data);
                 // After deletion, fetch updated list of users
@@ -29,6 +30,7 @@ const UserList = () => {
             .catch(error => {
                 console.error('Error deleting user:', error);
             });
+        }
     };
 
     return (
@@ -37,8 +39,9 @@ const UserList = () => {
             <ul>
                 {users.map(user => (
                     <li key={user.id}>
-                        {user.username} - {user.email}
-                        <button onClick={() => deleteUser(user.id)}>Delete</button>
+                        <a href={`/users/detail?id=${user.id}`}>{user.username} - {user.email}</a>
+                        <a href={`/users/update?id=${user.id}`}><button>Update</button></a>
+                        <button type='button'onClick={() => deleteUser(user.id)}>Delete</button>
                     </li>
                 ))}
             </ul>

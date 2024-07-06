@@ -1,5 +1,5 @@
 // guests.controller.ts
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, Query } from '@nestjs/common';
 import { CountryService } from './country.service';
 import { Country } from './country.entity';
 
@@ -22,13 +22,13 @@ export class CountryController {
     return this.countryService.create(guestData);
   }
 
-  @Put(':id')
-  update(@Param('id') id: number, @Body() guestData: Country): Promise<Country> {
+  @Put('/update')
+  update(@Query('id') id: number, @Body() guestData: Country): Promise<Country> {
     return this.countryService.update(id, guestData);
   }
 
-  @Delete(':id')
-  delete(@Param('id') id: number): Promise<void> {
+  @Delete('/delete')
+  delete(@Query('id') id: number): Promise<void> {
     return this.countryService.delete(id);
   }
 }

@@ -1,11 +1,16 @@
 // users.controller.ts
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, Query } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './user.entity';
 
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @Get('/search')
+  findByName(@Query('search') search: string): Promise<User> {
+    return this.userService.searchByName(search);
+  }
 
   @Get(':id')
   findOne(@Param('id') id: number): Promise<User> {
@@ -35,13 +40,13 @@ export class UserController {
     return null;
   }
 
-  @Put(':id')
-  update(@Param('id') id: number, @Body() userData: User): Promise<User> {
+  @Put('/update')
+  update(@Query('id') id: number, @Body() userData: User): Promise<User> {
     return this.userService.update(id, userData);
   }
 
-  @Delete(':id')
-  delete(@Param('id') id: number): Promise<void> {
+  @Delete('/delete')
+  delete(@Query('id') id: number): Promise<void> {
     return this.userService.delete(id);
   }
 }

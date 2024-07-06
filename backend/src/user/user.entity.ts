@@ -25,5 +25,5 @@ export class User {
   role: Role;
   
   @OneToMany(() => News, news => news.user_id)
-  news: News[];
+  news: News;
 }

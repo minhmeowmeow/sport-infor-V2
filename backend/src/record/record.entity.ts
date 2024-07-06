@@ -22,7 +22,7 @@ export class Record {
   referencedColumnName: 'id',
   foreignKeyConstraintName: 'record_player_id_fkey',
   }) 
-  player_id: Player[];
+  player_id: Player;
   
   @ManyToOne(() => Tournament, tournament => tournament.record)
   @JoinColumn({
@@ -30,7 +30,7 @@ export class Record {
   referencedColumnName: 'id',
   foreignKeyConstraintName: 'record_tournament_id_fkey',
   }) 
-  tournament_id: Tournament[];
+  tournament_id: Tournament;
 
   
 }

@@ -25,7 +25,7 @@ export class News {
   referencedColumnName: 'id',
   foreignKeyConstraintName: 'news_user_id_fkey',
   }) 
-  user_id: User[];
+  user_id: User;
   
   @ManyToOne(() => Sport, sport => sport.tournament)
   @JoinColumn({
@@ -33,6 +33,6 @@ export class News {
   referencedColumnName: 'id',
   foreignKeyConstraintName: 'news_sports_id_fkey',
   }) 
-  sport_id: Sport[];
+  sport_id: Sport;
 
 }

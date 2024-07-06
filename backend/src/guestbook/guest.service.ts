@@ -19,7 +19,7 @@ export class GuestService {
         const guest = await this.guestRepository.findOne({
           where: {
               id: id
-          }
+          },relations: ['role']
       });
         if (!guest) {
             throw new NotFoundException(`guest with ID ${id} not found`);

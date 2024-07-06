@@ -1,5 +1,5 @@
 // users.controller.ts
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, Query } from '@nestjs/common';
 import { TeamService } from './team.service';
 import { Team } from './team.entity';
 
@@ -22,13 +22,13 @@ export class TeamController {
     return this.teamService.create(teamData);
   }
 
-  @Put(':id')
-  update(@Param('id') id: number, @Body() teamData: Team): Promise<Team> {
+  @Put('/update')
+  update(@Query('id') id: number, @Body() teamData: Team): Promise<Team> {
     return this.teamService.update(id, teamData);
   }
 
-  @Delete(':id')
-  delete(@Param('id') id: number): Promise<void> {
+  @Delete('/delete')
+  delete(@Query('id') id: number): Promise<void> {
     return this.teamService.delete(id);
   }
 }

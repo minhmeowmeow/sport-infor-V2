@@ -35,7 +35,7 @@ export class TeamService {
         .values(teamData)
         .returning("id")
         .execute()
-        return ;
+        return teamData;
     }
 
     async update(id: number, teamData: Team): Promise<Team> {

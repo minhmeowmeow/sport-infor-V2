@@ -33,8 +33,8 @@ function SportDetail() {
         <section>
           <h2>Hình ảnh cầu thủ</h2>
           {sport.player.map(player => (
-              <a key={player.id} to={`/sports/player?id=${player.id}`}>
-                <img className='player-image' src={`/images/${sport.name}/${player.name}.jpg`} alt="Cau thu 1"/>
+              <a key={player.id} href={`/player/detail?id=${player.id}`}>
+                <img className='player-image' src={`/images/${sport.name}/${player.id}.jpg`} alt="Cau thu 1"/>
               </a>
             ))}
         </section>

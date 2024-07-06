@@ -19,7 +19,7 @@ export class PlayerService {
         const player = await this.playerRepository.findOne({
           where: {
               id: id
-          }
+          }, relations: ['sport_id', 'team_id'] 
       });
         if (!player) {
             throw new NotFoundException(`player with ID ${id} not found`);
@@ -35,7 +35,7 @@ export class PlayerService {
         .values(playerData)
         .returning("id")
         .execute()
-        return ;
+        return playerData;
     }
 
     async update(id: number, playerData: Player): Promise<Player> {

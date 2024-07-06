@@ -13,7 +13,7 @@ function SportNew() {
 
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
-    const userData = {
+    const sportData = {
       name: name,
       strategy: strategy,
       is_team: is_team,
@@ -22,16 +22,12 @@ function SportNew() {
     };
 
     try {
-      const role = localStorage.getItem('userRole').replace(/^"(.*)"$/, '$1');
-      // Send POST request to your backend
       const response = await fetch('http://localhost:3000/sports', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          sportData: sportData
-        }),
+        body: JSON.stringify(sportData),
       });
 
       if (!response.ok) {
@@ -51,7 +47,7 @@ function SportNew() {
       setTime_invented('');
       setFailureMessage('');
 
-      window.location.href = '/Login'; 
+      window.location.href = '/sports'; 
 
     } catch (error) {
       console.error('Error registering admin:', error.message);
@@ -71,7 +67,7 @@ function SportNew() {
               type="text" 
               id="registerName" 
               className="form-control" 
-              placeholder="Enter your name" 
+              placeholder="Enter your name"
               value={name} 
               onChange={(e) => setName(e.target.value)}
             />
@@ -120,7 +116,7 @@ function SportNew() {
               onChange={(e) => setTime_invented(e.target.value)}
             />
             </div>
-            <button type="submit" className="btn btn-primary btn-block mb-3">Sign up</button>
+            <button type="submit" className="btn btn-primary btn-block mb-3">Create</button>
           </form>
     </div>
   );

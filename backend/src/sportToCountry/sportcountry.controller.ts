@@ -1,5 +1,5 @@
 // guests.controller.ts
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, Query } from '@nestjs/common';
 import { SportToCountryService } from './sportcountry.service';
 import { SportToCountry } from './sportcountry.entity';
 
@@ -22,14 +22,14 @@ export class SportToCountryController {
     return this.sportToCountryService.create(guestData);
   }
 
-  @Put(':id')
-  update(@Param('sport_id') sport_id: number, @Param('country_id') country_id: number
+  @Put('/update')
+  update(@Query('sport_id') sport_id: number, @Query('country_id') country_id: number
   , @Body() guestData: SportToCountry): Promise<SportToCountry> {
     return this.sportToCountryService.update(sport_id, country_id, guestData);
   }
 
-  @Delete(':id')
-  delete(@Param('sport_id') sport_id: number, @Param('country_id') country_id: number): Promise<void> {
+  @Delete('/delete')
+  delete(@Query('sport_id') sport_id: number, @Query('country_id') country_id: number): Promise<void> {
     return this.sportToCountryService.delete(sport_id, country_id);
   }
 }

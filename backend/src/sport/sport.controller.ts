@@ -1,5 +1,5 @@
 // users.controller.ts
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, Query } from '@nestjs/common';
 import { SportService } from './sport.service';
 import { Sport } from './sport.entity';
 
@@ -7,14 +7,14 @@ import { Sport } from './sport.entity';
 export class SportController {
   constructor(private readonly sportService: SportService) {}
 
+  @Get('/search')
+  findByName(@Query('search') search: string): Promise<Sport[]> {
+    return this.sportService.searchByName(search);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: number): Promise<Sport> {
     return this.sportService.findOne(id);
-  }
-
-  @Get(':search')
-  findByName(@Param('search') search: string): Promise<Sport[]> {
-    return this.sportService.searchByName(search);
   }
 
   @Get()
@@ -27,13 +27,13 @@ export class SportController {
     return this.sportService.create(sportData);
   }
 
-  @Put(':id')
-  update(@Param('id') id: number, @Body() sportData: Sport): Promise<Sport> {
+  @Put("/update")
+  update(@Query('id') id: number, @Body() sportData: Sport): Promise<Sport> {
     return this.sportService.update(id, sportData);
   }
 
-  @Delete(':id')
-  delete(@Param('id') id: number): Promise<void> {
+  @Delete('/delete')
+  delete(@Query('id') id: number): Promise<void> {
     return this.sportService.delete(id);
   }
 }

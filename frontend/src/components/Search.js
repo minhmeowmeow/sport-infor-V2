@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const PlayerList = () => {
+const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredSport, setfilteredSport] = useState([]);
 
@@ -10,7 +10,7 @@ const PlayerList = () => {
     setSearchQuery(value);
 
     try {
-      const response = await axios.get(`http://your-nestjs-api-url/players?q=${value}`);
+      const response = await axios.get(`http://localhost:3000/sports/search?search=${value}`);
       setfilteredSport(response.data); // Assuming response.data is an array of players
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -18,19 +18,19 @@ const PlayerList = () => {
   };
 
   return (
-    <div>
+    <div  className='football-detail'>
+      Search for a sport:
       <input
         type="text"
         value={searchQuery}
         onChange={handleSearchInputChange}
-        placeholder="Search by player name..."
+        placeholder="Search by sport name..."
       />
 
       <ul>
-        {filteredSport.map(player => (
-          <li key={player.id}>
-            {player.name}
-            <a href={`/sports/detail?id=${sports.id}`}>{sports.name}</a>
+        {filteredSport.map(filteredSport => (
+          <li key={filteredSport.id}>
+            <a href={`/sports/detail?id=${filteredSport.id}`}>{filteredSport.name}</a>
           </li>
         ))}
       </ul>
@@ -38,4 +38,4 @@ const PlayerList = () => {
   );
 };
 
-export default PlayerList;
+export default Search;

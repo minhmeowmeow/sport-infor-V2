@@ -25,7 +25,7 @@ export class Tournament {
   sport_id: Sport[];
   
   @OneToMany(() => Record, record => record.tournament_id)
-  record: Record[];
+  record: Record;
 
   
 }

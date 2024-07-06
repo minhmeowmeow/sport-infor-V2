@@ -33,7 +33,7 @@ import { GuestController } from './guestbook/guest.controller';
 import { NewsController } from './news/news.controller';
 import { PlayerController } from './player/player.controller';
 import { RecommendController } from './recommendScore/recommend.controller';
-import { RecordController } from './record/team.controller';
+import { RecordController } from './record/record.controller';
 import { SportController } from './sport/sport.controller';
 import { SportToCountryController } from './sportToCountry/sportcountry.controller';
 import { TeamController } from './team/team.controller';

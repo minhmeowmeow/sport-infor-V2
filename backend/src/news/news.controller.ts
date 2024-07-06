@@ -1,11 +1,16 @@
 // users.controller.ts
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, Query } from '@nestjs/common';
 import { NewsService } from './news.service';
 import { News } from './news.entity';
 
 @Controller('news')
 export class NewsController {
   constructor(private readonly newsService: NewsService) {}
+
+  @Get('/latest')
+  findLatest(): Promise<News[]> {
+    return this.newsService.findLatest();
+  }
 
   @Get(':id')
   findOne(@Param('id') id: number): Promise<News> {
@@ -22,13 +27,13 @@ export class NewsController {
     return this.newsService.create(newsData);
   }
 
-  @Put(':id')
-  update(@Param('id') id: number, @Body() newsData: News): Promise<News> {
+  @Put('/update')
+  update(@Query('id') id: number, @Body() newsData: News): Promise<News> {
     return this.newsService.update(id, newsData);
   }
 
-  @Delete(':id')
-  delete(@Param('id') id: number): Promise<void> {
+  @Delete('/delete')
+  delete(@Query('id') id: number): Promise<void> {
     return this.newsService.delete(id);
   }
 }

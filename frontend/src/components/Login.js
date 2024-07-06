@@ -30,12 +30,10 @@ function Login() {
         const role = userData.role.name;
         const useremail = userData.email;
         
-        // Store user data in localStorage (if needed)
         localStorage.setItem('userRole', JSON.stringify(role));
         localStorage.setItem('userEmail', JSON.stringify(useremail));
   
-        // Redirect to dashboard or another page after successful login
-        window.location.href = '/dashboard'; // Replace with your actual dashboard route
+        window.location.href = '/'; 
       }
 
 

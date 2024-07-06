@@ -11,6 +11,15 @@ export class NewsService {
     ) {}
 
     
+    async findLatest(): Promise<News[]> {
+        return this.newsRepository.find({
+            take: 3, 
+            order: {
+                id: 'DESC', 
+            },
+        });
+      }
+    
     async findAll(): Promise<News[]> {
       return this.newsRepository.find();
     }
@@ -19,7 +28,7 @@ export class NewsService {
         const news = await this.newsRepository.findOne({
           where: {
               id: id
-          }, relations: ['user'] 
+          }, relations: ['user_id', 'sport_id'] 
       });
         if (!news) {
             throw new NotFoundException(`news with ID ${id} not found`);
@@ -35,7 +44,7 @@ export class NewsService {
         .values(newsData)
         .returning("id")
         .execute()
-        return ;
+        return newsData;
     }
 
     async update(id: number, newsData: News): Promise<News> {

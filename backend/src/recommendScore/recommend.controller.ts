@@ -1,5 +1,5 @@
 // users.controller.ts
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, Query } from '@nestjs/common';
 import { RecommendService } from './recommend.service';
 import { RecommendScore } from './recommend.entity';
 
@@ -22,13 +22,13 @@ export class RecommendController {
     return this.recommendService.create(recommendData);
   }
 
-  @Put(':id')
-  update(@Param('id') id: number, @Body() recommendData: RecommendScore): Promise<RecommendScore> {
+  @Put('/update')
+  update(@Query('id') id: number, @Body() recommendData: RecommendScore): Promise<RecommendScore> {
     return this.recommendService.update(id, recommendData);
   }
 
-  @Delete(':id')
-  delete(@Param('id') id: number): Promise<void> {
+  @Delete('/delete')
+  delete(@Query('id') id: number): Promise<void> {
     return this.recommendService.delete(id);
   }
 }

@@ -1,5 +1,5 @@
 // Guests.controller.ts
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, Query } from '@nestjs/common';
 import { GuestService } from './guest.service';
 import { Guest } from './guest.entity';
 
@@ -22,13 +22,13 @@ export class GuestController {
     return this.guestService.create(guestData);
   }
 
-  @Put(':id')
-  update(@Param('id') id: number, @Body() guestData: Guest): Promise<Guest> {
+  @Put('/update')
+  update(@Query('id') id: number, @Body() guestData: Guest): Promise<Guest> {
     return this.guestService.update(id, guestData);
   }
 
-  @Delete(':id')
-  delete(@Param('id') id: number): Promise<void> {
+  @Delete('/delete')
+  delete(@Query('id') id: number): Promise<void> {
     return this.guestService.delete(id);
   }
 }

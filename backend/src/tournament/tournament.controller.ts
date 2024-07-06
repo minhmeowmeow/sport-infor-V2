@@ -1,5 +1,5 @@
 // users.controller.ts
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, Query } from '@nestjs/common';
 import { TournamentService } from './tournament.service';
 import { Tournament } from './tournament.entity';
 
@@ -22,13 +22,13 @@ export class TournamentController {
     return this.tournamentService.create(tournamentData);
   }
 
-  @Put(':id')
-  update(@Param('id') id: number, @Body() tournamentData: Tournament): Promise<Tournament> {
+  @Put('/update')
+  update(@Query('id') id: number, @Body() tournamentData: Tournament): Promise<Tournament> {
     return this.tournamentService.update(id, tournamentData);
   }
 
-  @Delete(':id')
-  delete(@Param('id') id: number): Promise<void> {
+  @Delete('/delete')
+  delete(@Query('id') id: number): Promise<void> {
     return this.tournamentService.delete(id);
   }
 }
